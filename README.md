@@ -15,7 +15,7 @@
       - curl
       - gcc
   - скопировать файлы с локального пк в докер образ
-  - прокинуть ssh сокет внутрь docker образа для доступа к узлам и git репозиториям # хз
+  - прокинуть ssh сокет внутрь docker образа для доступа к узлам и git репозиториям
 
 
 2. Создать докер образ с postgresql:14
@@ -24,37 +24,3 @@
   Запустить образ и подлкючиться к базе с локального пк
 
 
-
-# install 
-
-1. 
-```
-sudo apt install curl
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh  
-sudo apt update 
-sudo apt install \
-  apt-transport-https \
-  ca-certificates \
-  curl \
-  gnupg-agent \
-  software-properties-common -y 
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-
-sudo apt update
-```
-2. 
-```
-sudo apt remove docker docker-engine docker.io containerd runc
-sudo apt install docker-ce docker-compose -y 
-```
-3. ```sudo systemctl status docker ```
-
-# Run
-docker build -t test .  
-docker run -it test
-
-docker buildx build --ssh default=$SSH_AUTH_SOCK .

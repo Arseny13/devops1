@@ -65,6 +65,11 @@ RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 RUN --mount=type=ssh \
   ssh -q -T git@github.com 2>&1 | tee /hello
 
-RUN echo $(ssh -T git@github.com)
+RUN --mount=type=ssh \
+    echo $( ssh -T git@github.com)
+
+RUN --mount=type=ssh \
+    git clone git@github.com:Arseny13/devops1.git /project
+
 # Запускаем bash по умолчанию
 CMD ["/bin/bash"]
