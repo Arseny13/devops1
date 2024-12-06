@@ -55,11 +55,16 @@ RUN chmod +x /usr/local/bin/helm /usr/local/bin/kubectl \
     && setfacl -m g:middle:rx /usr/local/bin/helm /usr/local/bin/kubectl
 
 
-# Копирвоание файла
-COPY ./test.txt .
+
 
 # Cоздание папки для сокета
 RUN mkdir -p /ssh-agent
 
+# ssh сокет 
+RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+RUN --mount=type=ssh \
+  ssh -q -T git@github.com 2>&1 | tee /hello
+
+RUN echo $(ssh -T git@github.com)
 # Запускаем bash по умолчанию
 CMD ["/bin/bash"]

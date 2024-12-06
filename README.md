@@ -57,7 +57,4 @@ sudo apt install docker-ce docker-compose -y
 docker build -t test .  
 docker run -it test
 
-docker run -it --rm \
-    -v $SSH_AUTH_SOCK:/ssh-agent \
-    -e SSH_AUTH_SOCK=/ssh-agent \
-    test
+docker buildx build --ssh default=$SSH_AUTH_SOCK .
