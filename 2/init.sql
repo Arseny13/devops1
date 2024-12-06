@@ -1,0 +1,2 @@
+CREATE USER newuser13 WITH PASSWORD 'newpassword';
+GRANT ALL PRIVILEGES ON DATABASE mydatabase TO newuser13;
